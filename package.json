@@ -1,0 +1,74 @@
+{
+  "name": "ballistics-lab",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Баллистика — интерактивная лаборатория движения тела, брошенного под углом к горизонту",
+  "author": "Учебный проект по физике",
+  "license": "MIT",
+  "main": "electron/main.cjs",
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "start": "node tools/serve.mjs",
+    "test": "node tests/physics.test.cjs",
+    "electron:dev": "electron .",
+    "dist:win": "electron-builder --win"
+  },
+  "keywords": [
+    "physics",
+    "ballistics",
+    "simulation",
+    "education",
+    "electron"
+  ],
+  "devDependencies": {
+    "electron": "^45.0.0",
+    "electron-builder": "^26.18.0"
+  },
+  "build": {
+    "appId": "ru.edu.ballisticslab",
+    "productName": "Баллистика",
+    "copyright": "Учебный проект по физике",
+    "asar": true,
+    "directories": {
+      "output": "dist",
+      "buildResources": "build"
+    },
+    "files": [
+      "index.html",
+      "src/**/*",
+      "styles/**/*",
+      "assets/**/*",
+      "electron/**/*",
+      "vendor/**/*"
+    ],
+    "win": {
+      "icon": "icon.ico",
+      "target": [
+        {
+          "target": "nsis",
+          "arch": [
+            "x64"
+          ]
+        },
+        {
+          "target": "portable",
+          "arch": [
+            "x64"
+          ]
+        }
+      ]
+    },
+    "nsis": {
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true,
+      "createDesktopShortcut": true,
+      "shortcutName": "Баллистика",
+      "artifactName": "Ballistika-Setup-${version}.${ext}"
+    },
+    "portable": {
+      "artifactName": "Ballistika-Portable-${version}.${ext}"
+    }
+  }
+}
